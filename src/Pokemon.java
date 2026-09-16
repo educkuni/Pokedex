@@ -6,12 +6,22 @@ public class Pokemon {
     private int height;
     private int weight;
     private List<TypeSlot> types;
+    private List<StatSlot> stats;
 
     private static class TypeSlot {
         private TypeInfo type;
     }
 
     private static class TypeInfo {
+        private String name;
+    }
+
+    private static class StatSlot {
+        private int base_stat;
+        private StatInfo stat;
+    }
+
+    private static class StatInfo {
         private String name;
     }
 
@@ -49,6 +59,16 @@ public class Pokemon {
         }
         return typeList.toString();
     }
+    public int getStatValue(String statName) {
+        if (stats == null) return 0;
 
+        for (StatSlot statSlot : stats) {
+            if (statSlot.stat.name.equalsIgnoreCase(statName)) {
+                return statSlot.base_stat;
+            }
+        }
+        return 0;
+    }
 }
+
 
